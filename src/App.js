@@ -16,7 +16,7 @@ const classedNumb = {
 function App() {
   const initPageRef = useRef();
   const [keyState, setKeyState] = useState(null);
-  const [gameState, setGameState] = useState('new');
+  const [gameState, setGameState] = useState(null);
   const [scoreState, setScoreState] = useState(0);
 
   const [data, setData] = useState([
@@ -174,13 +174,6 @@ function App() {
       ref={initPageRef}
       {...ArrowKeysReact.events} tabIndex="1"
     >
-      {gameState === 'lost' ? <div className='pop-up-message'>
-        <h1 className='message-text'> Game Over </h1>
-        <div 
-          className='new-game-btn'
-          onClick={handleNewGame}
-        > start a new game </div>
-      </div> : null}
       <div className='big-box'>
         <div className='intro-text'> please use your arrow keys to navigate </div>
         <div className='box-header'>
@@ -190,13 +183,22 @@ function App() {
           > new game </div>
           <div className='new-score-btn'> score: {scoreState} </div>
         </div>
-        {
-          data && data.length ? data.map(row => <div 
-            className='row'> {
-            row.map(col => <div className={`box ${col ? classedNumb[col] : ''}`}> {col || null} </div>)
-          } </div>)
-        : null
-        }
+        <div className='small-box'>
+          {gameState === 'lost' ? <div className='pop-up-message'>
+            <h1 className='message-text'> game over! </h1>
+            <div 
+              className='new-game-btn'
+              onClick={handleNewGame}
+            > try again </div>
+          </div> : null}
+          {
+            data && data.length ? data.map(row => <div 
+              className='row'> {
+              row.map(col => <div className={`box ${col ? classedNumb[col] : ''}`}> {col || null} </div>)
+            } </div>)
+          : null
+          }
+        </div>
       </div>
     </div>
   );

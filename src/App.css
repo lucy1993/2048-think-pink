@@ -1,7 +1,6 @@
 .App {
   text-align: center;
   background-color: #f1a6c7;
-  height: 700px;
 }
 
 .row {
@@ -31,8 +30,7 @@
 }
 
 .intro-text {
-  margin-bottom: 30px;
-  padding-top: 30px;
+  padding-top: 6px;
   color: #fff;
   font-size: 22px;
   text-align: left;
@@ -67,6 +65,7 @@
 
 .box-header {
   display: flex;
+  padding: 10px 28px 0 25px;
   justify-content: space-between;
 }
 
@@ -80,7 +79,6 @@
   display: flex;
   align-items: center;
   border-radius: 8px;
-  margin: 25px;
   cursor: pointer;
 }
 
@@ -93,12 +91,19 @@
   display: flex;
   align-items: center;
   border-radius: 8px;
-  margin: 25px;
+}
+
+.small-box {
+  position: relative;
+  padding: 20px 0;
 }
 
 .pop-up-message {
-  position: fixed;
+  position: absolute;
+  top: 0;
+  left: 0;
   display: flex;
+  border-radius: 15px;
   flex-direction: column;
   width: 100%;
   height: 100%;
@@ -109,4 +114,5 @@
 
 .message-text {
   color: #fff;
+  letter-spacing: 2px;
 }
