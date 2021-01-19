@@ -10,21 +10,23 @@ const classedNumb = {
   32: 'thirty-two',
   64: 'sixty-four',
   128: 'h-t-e',
-  256: 't-f-s'
+  256: 't-f-s',
+  512: 'f-o-t',
+  1024: 'o-z-t-f',
+  2048: 't-z-f-e'
 }
 
 function App() {
   const initPageRef = useRef();
   const [keyState, setKeyState] = useState(null);
-  const [animateState, setAnimateState] = useState(true);
   const [gameState, setGameState] = useState(null);
   const [scoreState, setScoreState] = useState(0);
 
   const [data, setData] = useState([
-    [0,0,2,0], 
     [0,0,0,0], 
     [0,0,0,0], 
-    [0,0,0,0]
+    [0,0,0,0], 
+    [0,0,0,2]
   ]);
 
   const handleNewGame = () => {
@@ -83,7 +85,7 @@ function App() {
 
   const handleSum = (modData, side) => {
     let newData = []
-    modData.forEach((row, rowIndex) => {
+    modData.forEach(row => {
       let newRow = []
       row.map((col, colIndex) => {
         let innerRow = row
@@ -104,7 +106,6 @@ function App() {
   }
 
   const handleOrderArray = (modData, side) => {
-    setAnimateState(true)
 
     let newData = []
     let noM = 0
@@ -124,9 +125,26 @@ function App() {
     if(noM !== 4) {
       return sumData
     } else {
-      setGameState('lost')
-      return data
+      if(!handleCheckSteps(data)) {
+        setGameState('lost');
+      }
+      return sumData
     }
+  }
+
+  const handleCheckSteps = (modData) => {
+    let noStep = false
+    modData.forEach(row => {
+      row.map((col, colIndex) => {
+        let innerRow = row
+        if(col) {
+          if(col === innerRow[colIndex+1]) {
+            noStep = true
+          } 
+        }
+      })
+    })
+    return noStep
   }
 
   const handleReverseArray = (modData) => {
@@ -144,7 +162,6 @@ function App() {
 
   const handleArrows = (eventSide) => {
     let mainData = null
-    setAnimateState(false)
     if(eventSide === 'left') {
       mainData = handleOrderArray(data, eventSide)
     }
@@ -168,8 +185,7 @@ function App() {
     if(mainData) setData(mainData)
     setKeyState(eventSide)
   }
-  
-  const count = -1
+
   return (
     <div 
       className="App"
@@ -196,7 +212,6 @@ function App() {
             data && data.length ? data.map((row, indexRow) => {
               let classAnm = 'swipeAnimation';
               setTimeout(() => classAnm = ' ', 0);
-
               let rowAnimDir = indexRow;
               if(keyState === 'up') {
                 rowAnimDir = 4-indexRow
@@ -210,7 +225,7 @@ function App() {
                   rowAnimDir = 4 - indexCol
                 }
                 return <div 
-                style={{ animationDelay: `0.${rowAnimDir}s` }}
+                style={{ animationDelay: `0.${rowAnimDir-1}s` }}
                 key={Math.random()}
                 className={`${col ? null : classAnm} box ${col ? classedNumb[col] : ''}`}> {col || null} 
               </div>

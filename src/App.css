@@ -25,7 +25,7 @@
   justify-content: center;
   color: #fff;
   border-radius: 18px;
-  font-size: 45px;
+  font-size: 2rem;
   margin: 5px;
 }
 
@@ -61,8 +61,18 @@
   background-color: #4665ed;
 }
 .t-f-s {
-  background-color: #2a3771;
+  background-color: #2a4a71;
 }
+.f-o-t {
+  background-color: #1f3b54;
+}
+.o-z-t-f {
+  background-color: #483672;
+}
+.t-z-f-e {
+  background-color: #0a0e1f;
+}
+  
 
 .box-header {
   display: flex;
@@ -122,25 +132,14 @@
 @-moz-keyframes swipeSides {}
 @-o-keyframes swipeSides {}
 @keyframes swipeSides {
-  0%   {   background-color: #f4c9df; }
-  50%   {   background-color: #f4e0ea; }
+  0%   {   background-color: #f4e0ea; }
   100% {   background-color: #f4c9df;  }
 }
 
 
 .swipeAnimation {
-  -webkit-animation: swipeSides 1s; /* Safari 4+ */
-  -moz-animation:    swipeSides 1s; /* Fx 5+ */
-  -o-animation:      swipeSides 1s; /* Opera 12+ */
-  animation:         swipeSides 1s; /* IE 10+, Fx 29+ */
-}
-
-
-.example-appear {
-  background-color: #fff;
-}
-
-.example-appear.example-appear-active {
-  background-color: #f4c9df;
-  transition: background-color 5s ease;
+  -webkit-animation: swipeSides 0.3s; /* Safari 4+ */
+  -moz-animation:    swipeSides 0.3s; /* Fx 5+ */
+  -o-animation:      swipeSides 0.3s; /* Opera 12+ */
+  animation:         swipeSides 0.3s; /* IE 10+, Fx 29+ */
 }
