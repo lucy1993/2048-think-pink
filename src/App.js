@@ -16,6 +16,7 @@ const classedNumb = {
 function App() {
   const initPageRef = useRef();
   const [keyState, setKeyState] = useState(null);
+  const [animateState, setAnimateState] = useState(true);
   const [gameState, setGameState] = useState(null);
   const [scoreState, setScoreState] = useState(0);
 
@@ -48,7 +49,6 @@ function App() {
 
   const addRandomNumber = () => {
     const changeCurrentData = [...data];
-
     if (gameState !== 'lost') {
       const randomParent = Math.floor(Math.random() * 4)
       const randomChild = Math.floor(Math.random() * 4)
@@ -104,6 +104,8 @@ function App() {
   }
 
   const handleOrderArray = (modData, side) => {
+    setAnimateState(true)
+
     let newData = []
     let noM = 0
     modData.forEach(row => {
@@ -142,7 +144,7 @@ function App() {
 
   const handleArrows = (eventSide) => {
     let mainData = null
-
+    setAnimateState(false)
     if(eventSide === 'left') {
       mainData = handleOrderArray(data, eventSide)
     }
@@ -167,7 +169,7 @@ function App() {
     setKeyState(eventSide)
   }
   
-
+  const count = -1
   return (
     <div 
       className="App"
@@ -175,7 +177,6 @@ function App() {
       {...ArrowKeysReact.events} tabIndex="1"
     >
       <div className='big-box'>
-        <div className='intro-text'> please use your arrow keys to navigate </div>
         <div className='box-header'>
           <div 
             className='new-game-btn'
@@ -192,13 +193,34 @@ function App() {
             > try again </div>
           </div> : null}
           {
-            data && data.length ? data.map(row => <div 
-              className='row'> {
-              row.map(col => <div className={`box ${col ? classedNumb[col] : ''}`}> {col || null} </div>)
-            } </div>)
+            data && data.length ? data.map((row, indexRow) => {
+              let classAnm = 'swipeAnimation';
+              setTimeout(() => classAnm = ' ', 0);
+
+              let rowAnimDir = indexRow;
+              if(keyState === 'up') {
+                rowAnimDir = 4-indexRow
+              }
+              return <div
+              className={`row`} > {
+              row.map((col, indexCol) => {
+                if(keyState === 'right') {
+                  rowAnimDir = indexCol
+                } else if(keyState === 'left') {
+                  rowAnimDir = 4 - indexCol
+                }
+                return <div 
+                style={{ animationDelay: `0.${rowAnimDir}s` }}
+                key={Math.random()}
+                className={`${col ? null : classAnm} box ${col ? classedNumb[col] : ''}`}> {col || null} 
+              </div>
+              })
+            } </div>
+            })
           : null
           }
         </div>
+        <div className='intro-text'> please use your arrow keys to navigate </div>
       </div>
     </div>
   );

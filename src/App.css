@@ -31,6 +31,7 @@
 
 .intro-text {
   padding-top: 6px;
+  padding-bottom: 30px;
   color: #fff;
   font-size: 22px;
   text-align: left;
@@ -115,4 +116,31 @@
 .message-text {
   color: #fff;
   letter-spacing: 2px;
+}
+
+@-webkit-keyframes swipeSides {}
+@-moz-keyframes swipeSides {}
+@-o-keyframes swipeSides {}
+@keyframes swipeSides {
+  0%   {   background-color: #f4c9df; }
+  50%   {   background-color: #f4e0ea; }
+  100% {   background-color: #f4c9df;  }
+}
+
+
+.swipeAnimation {
+  -webkit-animation: swipeSides 1s; /* Safari 4+ */
+  -moz-animation:    swipeSides 1s; /* Fx 5+ */
+  -o-animation:      swipeSides 1s; /* Opera 12+ */
+  animation:         swipeSides 1s; /* IE 10+, Fx 29+ */
+}
+
+
+.example-appear {
+  background-color: #fff;
+}
+
+.example-appear.example-appear-active {
+  background-color: #f4c9df;
+  transition: background-color 5s ease;
 }
