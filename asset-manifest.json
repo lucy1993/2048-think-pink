@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/2048-think-pink/static/css/main.fd1ffa02.chunk.css",
-    "main.js": "/2048-think-pink/static/js/main.b12ea47e.chunk.js",
-    "main.js.map": "/2048-think-pink/static/js/main.b12ea47e.chunk.js.map",
+    "main.css": "/2048-think-pink/static/css/main.3acead24.chunk.css",
+    "main.js": "/2048-think-pink/static/js/main.cb6067b5.chunk.js",
+    "main.js.map": "/2048-think-pink/static/js/main.cb6067b5.chunk.js.map",
     "runtime-main.js": "/2048-think-pink/static/js/runtime-main.482250ba.js",
     "runtime-main.js.map": "/2048-think-pink/static/js/runtime-main.482250ba.js.map",
     "static/js/2.40dbb723.chunk.js": "/2048-think-pink/static/js/2.40dbb723.chunk.js",
@@ -10,13 +10,13 @@
     "static/js/3.89fb41e1.chunk.js": "/2048-think-pink/static/js/3.89fb41e1.chunk.js",
     "static/js/3.89fb41e1.chunk.js.map": "/2048-think-pink/static/js/3.89fb41e1.chunk.js.map",
     "index.html": "/2048-think-pink/index.html",
-    "static/css/main.fd1ffa02.chunk.css.map": "/2048-think-pink/static/css/main.fd1ffa02.chunk.css.map",
+    "static/css/main.3acead24.chunk.css.map": "/2048-think-pink/static/css/main.3acead24.chunk.css.map",
     "static/js/2.40dbb723.chunk.js.LICENSE.txt": "/2048-think-pink/static/js/2.40dbb723.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.482250ba.js",
     "static/js/2.40dbb723.chunk.js",
-    "static/css/main.fd1ffa02.chunk.css",
-    "static/js/main.b12ea47e.chunk.js"
+    "static/css/main.3acead24.chunk.css",
+    "static/js/main.cb6067b5.chunk.js"
   ]
 }
