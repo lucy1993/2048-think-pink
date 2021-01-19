@@ -76,7 +76,7 @@
 
 .box-header {
   display: flex;
-  padding: 10px 28px 0 25px;
+  padding: 10px 28px 40px 25px;
   justify-content: space-between;
 }
 

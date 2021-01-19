@@ -20,6 +20,7 @@ function App() {
   const initPageRef = useRef();
   const [keyState, setKeyState] = useState(null);
   const [gameState, setGameState] = useState(null);
+  const [randomState, setRandomState] = useState(true);
   const [scoreState, setScoreState] = useState(0);
 
   const [data, setData] = useState([
@@ -46,22 +47,25 @@ function App() {
   });
 
   useEffect(() => {
-    setData(addRandomNumber())
+    if(randomState) {
+      let data = addRandomNumber()
+      setData(data)
+    }
+
+    if(!handleCheckSteps(data)) {
+      setGameState('lost');
+    }
   }, [keyState]);
 
   const addRandomNumber = () => {
     const changeCurrentData = [...data];
-    if (gameState !== 'lost') {
-      const randomParent = Math.floor(Math.random() * 4)
-      const randomChild = Math.floor(Math.random() * 4)
-      const twoOrFour = Math.floor(Math.random() * 6) + 1  < 4 ? 2 : 4
-  
-  
-      if(changeCurrentData[randomParent][randomChild]) {
-        return addRandomNumber()
-      } else {
-         changeCurrentData[randomParent][randomChild] = twoOrFour;
-      }
+    const randomParent = Math.floor(Math.random() * 4)
+    const randomChild = Math.floor(Math.random() * 4)
+    const twoOrFour = Math.floor(Math.random() * 6) + 1  < 4 ? 2 : 4
+    if(changeCurrentData[randomParent][randomChild]) {
+      return addRandomNumber()
+    } else {
+        changeCurrentData[randomParent][randomChild] = twoOrFour;
     }
     return changeCurrentData
   }
@@ -121,18 +125,17 @@ function App() {
      
     })
 
-    const sumData = handleSum(newData, side)
-    if(noM !== 4) {
-      return sumData
-    } else {
-      if(!handleCheckSteps(data)) {
-        setGameState('lost');
-      }
-      return sumData
-    }
+    const sumData = handleSum(newData, side);
+
+    if(noM === 4) {
+      setRandomState(false);
+    } else setRandomState(true);
+
+    return sumData
   }
 
   const handleCheckSteps = (modData) => {
+
     let noStep = false
     modData.forEach(row => {
       row.map((col, colIndex) => {
@@ -141,7 +144,18 @@ function App() {
           if(col === innerRow[colIndex+1]) {
             noStep = true
           } 
-        }
+        } else noStep = true
+      })
+    })
+
+    handleReverseArray(modData).forEach(row => {
+      row.map((col, colIndex) => {
+        let innerRow = row
+        if(col) {
+          if(col === innerRow[colIndex+1]) {
+            noStep = true
+          } 
+        } else noStep = true
       })
     })
     return noStep
