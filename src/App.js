@@ -24,7 +24,7 @@ function App() {
   const [scoreState, setScoreState] = useState(0);
 
   const [data, setData] = useState([
-    [0,0,0,0], 
+    [1024,1024,0,0], 
     [0,0,0,0], 
     [0,0,0,0], 
     [0,0,0,2]
@@ -97,6 +97,7 @@ function App() {
           if(col === innerRow[colIndex+1]) {
             innerRow[colIndex+1] = 0
             newRow.push(col+col)
+            if(col+col === 2048) setGameState('win')
             setScoreState(scoreState + col + col)
           } else newRow.push(col)
         }
@@ -135,7 +136,6 @@ function App() {
   }
 
   const handleCheckSteps = (modData) => {
-
     let noStep = false
     modData.forEach(row => {
       row.map((col, colIndex) => {
@@ -200,6 +200,10 @@ function App() {
     setKeyState(eventSide)
   }
 
+  const handleCloseModal = () => {
+    setGameState(null)
+  }
+
   return (
     <div 
       className="App"
@@ -221,6 +225,17 @@ function App() {
               className='new-game-btn'
               onClick={handleNewGame}
             > try again </div>
+          </div> : null}
+          {gameState === 'win' ? <div className='pop-up-message'>
+            <h1 className='message-text'> you won! </h1>
+            <div 
+              className='new-game-btn'
+              onClick={handleCloseModal}
+            > continue  </div>
+            <div 
+              className='btn-text'
+              onClick={handleNewGame}
+            > start a new game </div>
           </div> : null}
           {
             data && data.length ? data.map((row, indexRow) => {

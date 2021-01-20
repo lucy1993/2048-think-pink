@@ -128,11 +128,17 @@
   letter-spacing: 2px;
 }
 
+.btn-text {
+  margin: 30px;
+  color: #fff;
+  letter-spacing: 2px;
+}
+
 @-webkit-keyframes swipeSides {}
 @-moz-keyframes swipeSides {}
 @-o-keyframes swipeSides {}
 @keyframes swipeSides {
-  0%   {   background-color: #f4e0ea; }
+  0%   {   background-color: #f9eef4; }
   100% {   background-color: #f4c9df;  }
 }
 
