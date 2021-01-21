@@ -22,9 +22,9 @@ function App() {
   const [gameState, setGameState] = useState(null);
   const [randomState, setRandomState] = useState(true);
   const [scoreState, setScoreState] = useState(0);
-
+  const[gifState, setGifState] = useState(true);
   const [data, setData] = useState([
-    [1024,1024,0,0], 
+    [0,0,0,0], 
     [0,0,0,0], 
     [0,0,0,0], 
     [0,0,0,2]
@@ -204,12 +204,22 @@ function App() {
     setGameState(null)
   }
 
+  setTimeout(() => setGifState(false), 1000)
+
   return (
     <div 
       className="App"
       ref={initPageRef}
       {...ArrowKeysReact.events} tabIndex="1"
     >
+      {gifState ? <div className='image-gif-wrapper'>
+        <div className='image-gif'>
+          <img 
+            src='https://firebasestorage.googleapis.com/v0/b/think-pink-fc784.appspot.com/o/2048.GIF?alt=media&token=c652d413-36c3-474f-bc5f-8b3ab15274a7'
+            width='100%'
+          />
+        </div>
+      </div> : null}
       <div className='big-box'>
         <div className='box-header'>
           <div 
@@ -220,22 +230,42 @@ function App() {
         </div>
         <div className='small-box'>
           {gameState === 'lost' ? <div className='pop-up-message'>
-            <h1 className='message-text'> game over! </h1>
-            <div 
-              className='new-game-btn'
-              onClick={handleNewGame}
-            > try again </div>
+              <div className='image-gif-wrapper'>
+                <div className='image-gif'>
+                  <img 
+                    src='https://firebasestorage.googleapis.com/v0/b/think-pink-fc784.appspot.com/o/2048-game-over.gif?alt=media&token=9cd7c0ae-cd48-495f-b584-820cee3d824f'
+                    width='100%'
+                  />
+                </div>
+              </div>
+              <div className='message-wrap'>
+                <h1 className='message-text'> game over! </h1>
+                <div 
+                  className='new-game-btn'
+                  onClick={handleNewGame}
+                > try again </div>
+              </div>
           </div> : null}
           {gameState === 'win' ? <div className='pop-up-message'>
-            <h1 className='message-text'> you won! </h1>
-            <div 
-              className='new-game-btn'
-              onClick={handleCloseModal}
-            > continue  </div>
-            <div 
-              className='btn-text'
-              onClick={handleNewGame}
-            > start a new game </div>
+            <div className='image-gif-wrapper-win'>
+              <div className='image-gif'>
+                <img 
+                  src='https://firebasestorage.googleapis.com/v0/b/think-pink-fc784.appspot.com/o/2048-win.gif?alt=media&token=862c30c8-a48a-458c-a4a8-cadbc236d12d'
+                  width='100%'
+                />
+              </div>
+            </div>
+            <div className='message-wrap'>
+              <h1 className='message-text'> you won! </h1>
+              <div 
+                className='new-game-btn'
+                onClick={handleCloseModal}
+              > continue  </div>
+              <div 
+                className='btn-text'
+                onClick={handleNewGame}
+              > start a new game </div>
+            </div>
           </div> : null}
           {
             data && data.length ? data.map((row, indexRow) => {
