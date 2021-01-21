@@ -24,10 +24,10 @@ function App() {
   const [scoreState, setScoreState] = useState(0);
   const[gifState, setGifState] = useState(true);
   const [data, setData] = useState([
+    [0,0,2,0], 
     [0,0,0,0], 
     [0,0,0,0], 
-    [0,0,0,0], 
-    [0,0,0,2]
+    [0,0,0,0]
   ]);
 
   const handleNewGame = () => {
